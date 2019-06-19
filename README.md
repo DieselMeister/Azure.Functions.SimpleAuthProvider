@@ -22,7 +22,7 @@ So I build that "Provider", "Wrapper" or name it for yourself (Service?), where 
 
 You have to write the endpoint functions for yourself, so you can choose, what you need.
 
-**Please Note: Even if I uses the same hash and salt generation for the password as in asp.net core, I did build a full blown bullet prove OAuth. 
+**Please Note: Even if I uses the same hash and salt generation for the password as in asp.net core, I didn't build a full blown bullet prove OAuth. 
 If you have personal information from yout customers, you want to secure, please consider to use an proper OAuth Provider.
 Do not be cheap on security.**
 
