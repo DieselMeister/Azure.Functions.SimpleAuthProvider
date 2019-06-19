@@ -2,6 +2,18 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>    
+	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>0.0.1</Version>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <Company>Hardt IT-Solutions</Company>
+    <Authors>Daniel Hardt</Authors>
+    <PackageProjectUrl></PackageProjectUrl>
+    <PackageIconUrl></PackageIconUrl>
+    <PackageTags>simple auth azure functions</PackageTags>
+    <Copyright></Copyright>
+    <Description>a simple auth provider (non standard) to deploy on azure functions</Description>
+    <PackageLicenseUrl></PackageLicenseUrl>
+    
   </PropertyGroup>
 
   <ItemGroup>
