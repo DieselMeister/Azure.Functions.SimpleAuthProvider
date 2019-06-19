@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratedAssemblyInfoFile>obj\AssemblyInfo.Generated.fs</GeneratedAssemblyInfoFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <EmbeddedResource Remove="obj\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.fs" />
+    <Compile Include="Utilities.fs" />
+    <Compile Include="Table.fs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="TaskBuilder.fs" Version="2.1.0" />
+    <PackageReference Include="Unquote" Version="4.0.0" />
+    <PackageReference Include="WindowsAzure.Storage" Version="9.3.1" />
+  </ItemGroup>
+  
+</Project>

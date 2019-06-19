@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>    
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="Domain.fs" />
+    <Compile Include="DataAccess.fs" />
+    <Compile Include="Services.fs" />
+    <Compile Include="Function.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!--<PackageReference Include="FSharp.Azure.Storage" Version="3.2.0" />-->
+    <PackageReference Include="FSharp.Azure.Storage" Version="3.2.0" />
+    <PackageReference Include="FSharp.Json" Version="0.3.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Cryptography.KeyDerivation" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Azure.WebJobs" Version="3.0.9" />
+    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions" Version="3.0.2" />
+    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.Http" Version="3.0.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="WindowsAzure.Storage" Version="9.3.3" />
+  </ItemGroup>
+
+</Project>
