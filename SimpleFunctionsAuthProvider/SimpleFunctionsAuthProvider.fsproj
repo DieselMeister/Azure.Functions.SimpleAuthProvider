@@ -21,6 +21,7 @@
     <Compile Include="DataAccess.fs" />
     <Compile Include="Services.fs" />
     <Compile Include="Function.fs" />
+    <Compile Include="Extensions.fs" />
   </ItemGroup>
 
   <ItemGroup>
