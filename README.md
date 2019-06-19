@@ -1,5 +1,7 @@
 # A very simple Authentication Provider for deploying on Azure Functions
 
+**Attention: The implementation has some flaws, which I address. It is a pre alpha version ,if you will. I am happy, if you have some "Issues", Ideas or critics or some nice words.**
+
 Motivation: Sometimes I need for a very simple web application, which is basically made up with only an Azure Storage Static Page and an Azure Function as Backend
 
 So a full blown Identity Server with OAuth is sometime to heavy for the customer and not needed, because the app which are "secured" doesn't contain any personal or secret informations. 
@@ -20,9 +22,9 @@ So I build that "Provider", "Wrapper" or name it for yourself (Service?), where 
 
 You have to write the endpoint functions for yourself, so you can choose, what you need.
 
-*Please Note: Even if I uses the same hash and salt generation for the password as in asp.net core, I did build a full blown bullet prove OAuth. 
+**Please Note: Even if I uses the same hash and salt generation for the password as in asp.net core, I did build a full blown bullet prove OAuth. 
 If you have personal information from yout customers, you want to secure, please consider to use an proper OAuth Provider.
-Do not be cheap on security.*
+Do not be cheap on security.**
 
 Nevertheless, this simpel provider does his work. And sometimes it is enough to "secure" this little web app, you have written for you electician, builder oder nail studio next to you :)
 
