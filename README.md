@@ -202,7 +202,7 @@ Users can only be created if you have a token from a user which is in the group 
 Back to Create User:
 
 Header:
-Authorization (here you token!)
+```Authorization (here you token!)```
 
 Body:
 ```json
@@ -234,7 +234,7 @@ Body:
 You can only change a password as administrator or as yourself
 
 Header:
-Authorization (here you token!)
+```Authorization (here you token!)```
 
 Body:
 ```json
@@ -273,7 +273,7 @@ Here you can check, if a token is valid.
 
 
 Header:
-Authorization (here you token!)
+```Authorization (here you token!)```
 
 You get 200 or 401
 
@@ -283,7 +283,7 @@ You get 200 or 401
 Here you can invalidate a Token. After that the Token is no longer available.
 
 Header:
-Authorization (here you token!)
+```Authorization (here you token!)```
 
 You get always a 200.
 
@@ -293,7 +293,7 @@ You get always a 200.
 Here you can get the Userinfo. The Name and The Group in which he/she is in.
 
 Header:
-Authorization (here you token!)
+```Authorization (here you token!)```
 
 Response:
 ```json
