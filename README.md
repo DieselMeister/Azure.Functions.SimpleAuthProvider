@@ -2,7 +2,7 @@
 
 **Attention: The implementation has some flaws, which I address. It is a pre alpha version ,if you will. I am happy, if you have some "Issues", Ideas or critics or some nice words.**
 
-Motivation: Sometimes I need for a very simple web application, which is basically made up with only an Azure Storage Static Page and an Azure Function as Backend
+Motivation: Sometimes I need for a very simple web application, which is basically made up with only an Azure Storage Static Page and an Azure Function as Backend, a simple authentication mechanism. Backic Auth on the azure storage static website is currently not possible.
 
 So a full blown Identity Server with OAuth is sometime to heavy for the customer and not needed, because the app which are "secured" doesn't contain any personal or secret informations. 
 Mostly they want to "hide" these small apps from other companies.
