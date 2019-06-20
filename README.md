@@ -19,6 +19,8 @@ So I build that "Provider", "Wrapper" or name it for yourself (Service?), where 
 * Create User
 * Delete User
 * Change Password
+* Add Group To User
+* Remove Group From User
 
 You have to write the endpoint functions for yourself, so you can choose, what you need.
 
@@ -66,16 +68,30 @@ module DaFunc
     [<FunctionName("DeleteUser")>]
     let deleteUser
         (
-        [<HttpTrigger(Extensions.Http.AuthorizationLevel.Anonymous, "post", Route="api/auth/delete")>] req,
+        [<HttpTrigger(Extensions.Http.AuthorizationLevel.Anonymous, "post", Route="api/auth/user/delete")>] req,
         log
         ) = Functions.deleteUser req log
 
     [<FunctionName("ChangePassword")>]
     let changePassword
         (
-        [<HttpTrigger(Extensions.Http.AuthorizationLevel.Anonymous, "post", Route="api/auth/changepassword")>] req,
+        [<HttpTrigger(Extensions.Http.AuthorizationLevel.Anonymous, "post", Route="api/auth/user/changepassword")>] req,
         log
         ) = Functions.changePassword req log
+
+    [<FunctionName("AddGroupToUser")>]
+    let addGroupToUser
+        (
+        [<HttpTrigger(Extensions.Http.AuthorizationLevel.Anonymous, "post", Route="api/auth/user/addgroup")>] req,
+        log
+        ) = Functions.addGroupToUser req log
+
+    [<FunctionName("RemoveGroupFromUser")>]
+    let removeGroupFromUser
+        (
+        [<HttpTrigger(Extensions.Http.AuthorizationLevel.Anonymous, "post", Route="api/auth/user/removegroup")>] req,
+        log
+        ) = Functions.removeGroupFromUser req log
 
     [<FunctionName("Validate")>]
     let validate
@@ -132,17 +148,35 @@ module DaFunc
 
 		[FunctionName("DeleteUser")]
 		public static Task<IActionResult> DeleteUser(
-			[HttpTrigger(AuthorizationLevel.Anonymous, "post", Route="api/auth/delete")]
+			[HttpTrigger(AuthorizationLevel.Anonymous, "post", Route="api/auth/user/delete")]
 			HttpRequest req,
 			ILogger log)
 			=> Functions.deleteUser(req, log);
 
 		[FunctionName("ChangePassword")]
 		public static Task<IActionResult> ChangePassword(
-			[HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "api/auth/changepassword")]
+			[HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "api/auth/user/changepassword")]
 			HttpRequest req,
 			ILogger log)
 			=> Functions.changePassword(req, log);
+
+
+		[FunctionName("AddGroupToUser")]
+		public static Task<IActionResult> AddGroupToUser(
+			[HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "api/auth/user/addgroup")]
+			HttpRequest req,
+			ILogger log)
+			=> Functions.addGroupToUser(req, log);
+
+
+		[FunctionName("RemoveGroupFromUser")]
+		public static Task<IActionResult> RemoveGroupFromUser(
+			[HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "api/auth/user/removegroup")]
+			HttpRequest req,
+			ILogger log)
+			=> Functions.removeGroupFromUser(req, log);
+
+
 
 		[FunctionName("Validate")]
 		public static Task<IActionResult> Validate(
@@ -172,7 +206,6 @@ module DaFunc
 			ILogger log)
 			=> Functions.createEmptyUserForInit(req, log);
 	}
-
 ```
 
 
@@ -247,6 +280,41 @@ Body:
     "NewPassword":"new secret"
 }
 ```
+
+
+### Add Group To User Endpoint (POST)
+
+Adds a group to a user. Only as an administrator you can do that.
+
+Header:
+Authorization (here you token!)
+
+Body:
+```json
+{
+    "App": "MyApp",
+    "UserName": "theUser",
+    "Group":"newGroup"
+}
+```
+
+
+### Remove Group From User Endpoint (POST)
+
+Removes a group from a user. Only as an administrator you can do that.
+
+Header:
+Authorization (here you token!)
+
+Body:
+```json
+{
+    "App": "MyApp",
+    "UserName": "theUser",
+    "Group":"notNeedGroup"
+}
+```
+
 
 ### Authenticate (getToken) Endpoint (POST)
 
