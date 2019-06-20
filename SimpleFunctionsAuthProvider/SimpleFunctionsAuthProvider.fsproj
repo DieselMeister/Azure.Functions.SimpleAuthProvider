@@ -7,12 +7,12 @@
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Company>Hardt IT-Solutions</Company>
     <Authors>Daniel Hardt</Authors>
-    <PackageProjectUrl></PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/DieselMeister/Azure.Functions.SimpleAuthProvider</PackageProjectUrl>
     <PackageIconUrl></PackageIconUrl>
     <PackageTags>simple auth azure functions</PackageTags>
     <Copyright></Copyright>
     <Description>a simple auth provider (non standard) to deploy on azure functions</Description>
-    <PackageLicenseUrl></PackageLicenseUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression> 
     
   </PropertyGroup>
 
