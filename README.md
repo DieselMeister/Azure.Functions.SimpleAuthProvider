@@ -30,6 +30,14 @@ Do not be cheap on security.**
 
 Nevertheless, this simpel provider does his work. And sometimes it is enough to "secure" this little web app, you have written for you electician, builder, hair stylist or nail studio next to you :)
 
+## Nuget
+
+You can find the Package on Nuget.
+
+```
+dotnet add package SimpleAuthProvider.Azure.Functions
+```
+
 ## What you need.
 
 1. Please fire up an azure function Project. (F# or C# or VB.Net, whatever you want.)
