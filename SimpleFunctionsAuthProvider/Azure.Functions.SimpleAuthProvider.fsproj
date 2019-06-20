@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>    
 	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>SimpleAuthProvider.Azure.Functions</PackageId>
     <Version>0.0.1</Version>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Company>Hardt IT-Solutions</Company>
