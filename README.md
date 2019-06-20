@@ -1,6 +1,6 @@
 # A very simple Authentication Provider for deploying on Azure Functions
 
-**Attention: The implementation has some flaws, which I address. It is a pre alpha version ,if you will. I am happy, if you have some "Issues", Ideas or critics or some nice words.**
+**Attention: The implementation maybe has some flaws in compaison with for example a full blown OAUTH implementation, which I address. It is a pre alpha version ,if you will. I am happy, if you have some "Issues", Ideas or critics or some nice words.**
 
 Motivation: Sometimes I need for a very simple web application, which is basically made up with only an Azure Storage Static Page and an Azure Function as Backend, a simple authentication mechanism. Backic Auth on the azure storage static website is currently not possible.
 
