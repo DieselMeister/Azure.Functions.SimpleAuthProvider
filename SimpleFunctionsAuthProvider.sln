@@ -13,6 +13,12 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Azure.Functions.SimpleAuthP
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{03AEB449-7B2F-4207-9FD4-110B763BB9CF}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Other", "_Other", "{E3D718EA-E6DD-4AA7-A139-1C7D880FC3A0}"
+	ProjectSection(SolutionItems) = preProject
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

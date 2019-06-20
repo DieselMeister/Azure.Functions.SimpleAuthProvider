@@ -61,7 +61,7 @@ module DaFunc
     [<FunctionName("Authenticate")>]
     let authenticate
         (
-        [<HttpTrigger(Extensions.Http.AuthorizationLevel.Anonymous, "post", Route="api/auth/token")>] req,
+        [<HttpTrigger(Extensions.Http.AuthorizationLevel.Anonymous, "post", Route="auth/token")>] req,
         log
         ) = Functions.authenticate req log
 
@@ -69,42 +69,42 @@ module DaFunc
     [<FunctionName("CreateUser")>]
     let createUser
         (
-        [<HttpTrigger(Extensions.Http.AuthorizationLevel.Anonymous, "post", Route="api/auth/register")>] req,
+        [<HttpTrigger(Extensions.Http.AuthorizationLevel.Anonymous, "post", Route="auth/register")>] req,
         log
         ) = Functions.createUser req log
 
     [<FunctionName("DeleteUser")>]
     let deleteUser
         (
-        [<HttpTrigger(Extensions.Http.AuthorizationLevel.Anonymous, "post", Route="api/auth/user/delete")>] req,
+        [<HttpTrigger(Extensions.Http.AuthorizationLevel.Anonymous, "post", Route="auth/user/delete")>] req,
         log
         ) = Functions.deleteUser req log
 
     [<FunctionName("ChangePassword")>]
     let changePassword
         (
-        [<HttpTrigger(Extensions.Http.AuthorizationLevel.Anonymous, "post", Route="api/auth/user/changepassword")>] req,
+        [<HttpTrigger(Extensions.Http.AuthorizationLevel.Anonymous, "post", Route="auth/user/changepassword")>] req,
         log
         ) = Functions.changePassword req log
 
     [<FunctionName("AddGroupToUser")>]
     let addGroupToUser
         (
-        [<HttpTrigger(Extensions.Http.AuthorizationLevel.Anonymous, "post", Route="api/auth/user/addgroup")>] req,
+        [<HttpTrigger(Extensions.Http.AuthorizationLevel.Anonymous, "post", Route="auth/user/addgroup")>] req,
         log
         ) = Functions.addGroupToUser req log
 
     [<FunctionName("RemoveGroupFromUser")>]
     let removeGroupFromUser
         (
-        [<HttpTrigger(Extensions.Http.AuthorizationLevel.Anonymous, "post", Route="api/auth/user/removegroup")>] req,
+        [<HttpTrigger(Extensions.Http.AuthorizationLevel.Anonymous, "post", Route="auth/user/removegroup")>] req,
         log
         ) = Functions.removeGroupFromUser req log
 
     [<FunctionName("Validate")>]
     let validate
         (
-        [<HttpTrigger(Extensions.Http.AuthorizationLevel.Anonymous, "get", Route="api/auth/validate")>] req,
+        [<HttpTrigger(Extensions.Http.AuthorizationLevel.Anonymous, "get", Route="auth/validate")>] req,
         log
         ) = Functions.validate req log
 
@@ -112,7 +112,7 @@ module DaFunc
     [<FunctionName("InValidate")>]
     let invalidate
         (
-        [<HttpTrigger(Extensions.Http.AuthorizationLevel.Anonymous, "delete", Route="api/auth/invalidate")>] req,
+        [<HttpTrigger(Extensions.Http.AuthorizationLevel.Anonymous, "delete", Route="auth/invalidate")>] req,
         log
         ) = Functions.invalidate req log
 
@@ -120,7 +120,7 @@ module DaFunc
     [<FunctionName("UserInfo")>]
     let getUserInfo
         (
-        [<HttpTrigger(Extensions.Http.AuthorizationLevel.Anonymous, "get", Route="api/auth/userinfo")>] req,
+        [<HttpTrigger(Extensions.Http.AuthorizationLevel.Anonymous, "get", Route="auth/userinfo")>] req,
         log
         ) = Functions.getUserInfo req log
 
@@ -128,7 +128,7 @@ module DaFunc
     [<FunctionName("EmptyUserInit")>]
     let createEmptyUserForInit
         (
-        [<HttpTrigger(Extensions.Http.AuthorizationLevel.Anonymous, "post", Route="api/auth/emptyuserinit")>] req,
+        [<HttpTrigger(Extensions.Http.AuthorizationLevel.Anonymous, "post", Route="auth/emptyuserinit")>] req,
         log
         ) = Functions.createEmptyUserForInit req log
 ```
@@ -142,28 +142,28 @@ module DaFunc
 
 	    [FunctionName("Authenticate")]
 	    public static Task<IActionResult> Authenticate(
-		    [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "api/auth/token")]
+		    [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "auth/token")]
 		    HttpRequest req,
 		    ILogger log)
 		    => Functions.authenticate(req, log);
 
 		[FunctionName("CreateUser")]
 		public static Task<IActionResult> CreateUser(
-			[HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "api/auth/register")]
+			[HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "auth/register")]
 			HttpRequest req,
 			ILogger log)
 			=> Functions.createUser(req, log);
 
 		[FunctionName("DeleteUser")]
 		public static Task<IActionResult> DeleteUser(
-			[HttpTrigger(AuthorizationLevel.Anonymous, "post", Route="api/auth/user/delete")]
+			[HttpTrigger(AuthorizationLevel.Anonymous, "post", Route="auth/user/delete")]
 			HttpRequest req,
 			ILogger log)
 			=> Functions.deleteUser(req, log);
 
 		[FunctionName("ChangePassword")]
 		public static Task<IActionResult> ChangePassword(
-			[HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "api/auth/user/changepassword")]
+			[HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "auth/user/changepassword")]
 			HttpRequest req,
 			ILogger log)
 			=> Functions.changePassword(req, log);
@@ -171,7 +171,7 @@ module DaFunc
 
 		[FunctionName("AddGroupToUser")]
 		public static Task<IActionResult> AddGroupToUser(
-			[HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "api/auth/user/addgroup")]
+			[HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "auth/user/addgroup")]
 			HttpRequest req,
 			ILogger log)
 			=> Functions.addGroupToUser(req, log);
@@ -179,7 +179,7 @@ module DaFunc
 
 		[FunctionName("RemoveGroupFromUser")]
 		public static Task<IActionResult> RemoveGroupFromUser(
-			[HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "api/auth/user/removegroup")]
+			[HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "auth/user/removegroup")]
 			HttpRequest req,
 			ILogger log)
 			=> Functions.removeGroupFromUser(req, log);
@@ -188,28 +188,28 @@ module DaFunc
 
 		[FunctionName("Validate")]
 		public static Task<IActionResult> Validate(
-			[HttpTrigger(AuthorizationLevel.Anonymous, "get", Route="api/auth/validate")]
+			[HttpTrigger(AuthorizationLevel.Anonymous, "get", Route="auth/validate")]
 			HttpRequest req,
 			ILogger log)
 			=> Functions.validate(req, log);
 
 		[FunctionName("InValidate")]
 		public static Task<IActionResult> InValidate(
-			[HttpTrigger(AuthorizationLevel.Anonymous, "delete", Route="api/auth/invalidate")]
+			[HttpTrigger(AuthorizationLevel.Anonymous, "delete", Route="auth/invalidate")]
 			HttpRequest req,
 			ILogger log)
 			=> Functions.invalidate(req, log);
 
 		[FunctionName("UserInfo")]
 		public static Task<IActionResult> UserInfo(
-			[HttpTrigger(AuthorizationLevel.Anonymous, "get", Route="api/auth/userinfo")]
+			[HttpTrigger(AuthorizationLevel.Anonymous, "get", Route="auth/userinfo")]
 			HttpRequest req,
 			ILogger log)
 			=> Functions.getUserInfo(req, log);
 
 		[FunctionName("EmptyUserInit")]
 		public static Task<IActionResult> EmptyUserInit(
-			[HttpTrigger(AuthorizationLevel.Anonymous, "post", Route="api/auth/emptyuserinit")]
+			[HttpTrigger(AuthorizationLevel.Anonymous, "post", Route="auth/emptyuserinit")]
 			HttpRequest req,
 			ILogger log)
 			=> Functions.createEmptyUserForInit(req, log);
