@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29009.5
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "SimpleFunctionsAuthProvider", "SimpleFunctionsAuthProvider\SimpleFunctionsAuthProvider.fsproj", "{D9722631-088C-4631-BD01-891DC3CE815F}"
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Azure.Functions.SimpleAuthProvider", "SimpleFunctionsAuthProvider\Azure.Functions.SimpleAuthProvider.fsproj", "{D9722631-088C-4631-BD01-891DC3CE815F}"
 EndProject
 Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Test.Function", "Test.Function\Test.Function.fsproj", "{88D55C3F-7E5F-48CB-809B-FB03597DA3DB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test.FunctionCSharp", "Test.FunctionCSharp\Test.FunctionCSharp.csproj", "{BA788D24-CB8F-4FB0-89BE-30D983AA643E}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "SimpleFunctionsAuthProvider.Tests", "SimpleFunctionsAuthProvider.Tests\SimpleFunctionsAuthProvider.Tests.fsproj", "{96A1B45F-2D3A-40B7-AE8B-6ED7ADC205B2}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Azure.Functions.SimpleAuthProvider.Tests", "SimpleFunctionsAuthProvider.Tests\Azure.Functions.SimpleAuthProvider.Tests.fsproj", "{96A1B45F-2D3A-40B7-AE8B-6ED7ADC205B2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{03AEB449-7B2F-4207-9FD4-110B763BB9CF}"
 EndProject

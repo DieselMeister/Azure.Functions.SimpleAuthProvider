@@ -7,7 +7,7 @@
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.29" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SimpleFunctionsAuthProvider\SimpleFunctionsAuthProvider.fsproj" />
+    <ProjectReference Include="..\SimpleFunctionsAuthProvider\Azure.Functions.SimpleAuthProvider.fsproj" />
   </ItemGroup>
   <ItemGroup>
     <None Update="host.json">

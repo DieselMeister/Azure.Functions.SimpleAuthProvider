@@ -16,6 +16,10 @@
     
   </PropertyGroup>
 
+  <PropertyGroup>
+    <AssemblyVersionAttribute>0.0.1</AssemblyVersionAttribute>
+  </PropertyGroup>
+
   <ItemGroup>
     <Compile Include="Domain.fs" />
     <Compile Include="DataAccess.fs" />
@@ -25,7 +29,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <!--<PackageReference Include="FSharp.Azure.Storage" Version="3.2.0" />-->
     <PackageReference Include="FSharp.Azure.Storage" Version="3.2.0" />
     <PackageReference Include="FSharp.Json" Version="0.3.7" />
     <PackageReference Include="Microsoft.AspNetCore.Cryptography.KeyDerivation" Version="2.2.0" />
