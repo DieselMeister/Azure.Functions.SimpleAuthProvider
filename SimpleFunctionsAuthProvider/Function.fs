@@ -39,6 +39,12 @@ module Functions =
         NewPassword:string option
     }
 
+    type ChangeGroupRequest = {
+        App:string option
+        UserName:string option
+        Group:string option
+    }
+
     type TokenResponse = {
         Token:string
         Expires:int
@@ -161,7 +167,7 @@ module Functions =
                     | true ->
                         return OkResult() :> IActionResult
                 | _ ->
-                    return BadRequestErrorMessageResult("app, username and password needed") :> IActionResult
+                    return BadRequestErrorMessageResult("app, username and old and new password needed") :> IActionResult
         } |> Async.StartAsTask
 
 
@@ -195,6 +201,64 @@ module Functions =
                     return InternalServerErrorResult() :> IActionResult
             | _ ->
                 return BadRequestErrorMessageResult("app, username and password needed") :> IActionResult
+        } |> Async.StartAsTask
+
+
+    let addGroupToUser (req:HttpRequest) (log:ILogger) =
+        async {
+            use sr = new StreamReader(req.Body)
+            let! bodyContent = sr.ReadToEndAsync() |> Async.AwaitTask
+            let request = FSharp.Json.Json.deserialize<ChangeGroupRequest> bodyContent
+
+            // check if current User is administrator
+            let! tableClient = createTableClient ()
+            let! isCurrentUserAdmin = tableClient |> currentUserIsAdmin req 
+            if not isCurrentUserAdmin then
+                log.LogError("only admin is authorized to add a group to a user!")
+                return UnauthorizedResult() :> IActionResult
+            else    
+                match request.App,request.UserName,request.Group with
+                | Some app, Some username,Some group ->                    
+                    let! hasChanged = 
+                        tableClient
+                        |> Services.addGroupToUser app username group
+                    match hasChanged with
+                    | false ->
+                        log.LogError("failed to add a group to the user!")
+                        return InternalServerErrorResult() :> IActionResult
+                    | true ->
+                        return OkResult() :> IActionResult
+                | _ ->
+                    return BadRequestErrorMessageResult("app, username and group needed") :> IActionResult
+        } |> Async.StartAsTask
+
+
+    let removeGroupFromUser (req:HttpRequest) (log:ILogger) =
+        async {
+            use sr = new StreamReader(req.Body)
+            let! bodyContent = sr.ReadToEndAsync() |> Async.AwaitTask
+            let request = FSharp.Json.Json.deserialize<ChangeGroupRequest> bodyContent
+
+            // check if current User is administrator
+            let! tableClient = createTableClient ()
+            let! isCurrentUserAdmin = tableClient |> currentUserIsAdmin req 
+            if not isCurrentUserAdmin then
+                log.LogError("only admin is authorized to remove a group from a user!")
+                return UnauthorizedResult() :> IActionResult
+            else    
+                match request.App,request.UserName,request.Group with
+                | Some app, Some username,Some group ->                    
+                    let! hasChanged = 
+                        tableClient
+                        |> Services.removeGroupFromUser app username group
+                    match hasChanged with
+                    | false ->
+                        log.LogError("failed to remove a group from the user!")
+                        return InternalServerErrorResult() :> IActionResult
+                    | true ->
+                        return OkResult() :> IActionResult
+                | _ ->
+                    return BadRequestErrorMessageResult("app, username and group needed") :> IActionResult
         } |> Async.StartAsTask
 
 

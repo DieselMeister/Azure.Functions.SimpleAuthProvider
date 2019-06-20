@@ -23,16 +23,30 @@
     [<FunctionName("DeleteUser")>]
     let deleteUser
         (
-        [<HttpTrigger(Extensions.Http.AuthorizationLevel.Anonymous, "post", Route="api/auth/delete")>] req,
+        [<HttpTrigger(Extensions.Http.AuthorizationLevel.Anonymous, "post", Route="api/auth/user/delete")>] req,
         log
         ) = Functions.deleteUser req log
 
     [<FunctionName("ChangePassword")>]
     let changePassword
         (
-        [<HttpTrigger(Extensions.Http.AuthorizationLevel.Anonymous, "post", Route="api/auth/changepassword")>] req,
+        [<HttpTrigger(Extensions.Http.AuthorizationLevel.Anonymous, "post", Route="api/auth/user/changepassword")>] req,
         log
         ) = Functions.changePassword req log
+
+    [<FunctionName("AddGroupToUser")>]
+    let addGroupToUser
+        (
+        [<HttpTrigger(Extensions.Http.AuthorizationLevel.Anonymous, "post", Route="api/auth/user/addgroup")>] req,
+        log
+        ) = Functions.addGroupToUser req log
+
+    [<FunctionName("RemoveGroupFromUser")>]
+    let removeGroupFromUser
+        (
+        [<HttpTrigger(Extensions.Http.AuthorizationLevel.Anonymous, "post", Route="api/auth/user/removegroup")>] req,
+        log
+        ) = Functions.removeGroupFromUser req log
 
     [<FunctionName("Validate")>]
     let validate

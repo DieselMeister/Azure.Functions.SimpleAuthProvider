@@ -43,14 +43,22 @@ module Domain =
     let private stringToBytes (str:string) =
         Convert.FromBase64String(str)
 
+    let private splitGroupString (str:string) =
+        str.Split([|" "|],StringSplitOptions.RemoveEmptyEntries)
+        |> List.ofArray
+
+    let private buildGroupString (groups:string list) =
+        String.Join(" ",groups)
+
+
+
     module private User =
 
         let toUserInfo (user:User) =
             { 
                 UserName = user.UserName
                 Groups = 
-                    user.Groups.Split([|" "|],StringSplitOptions.RemoveEmptyEntries) 
-                    |> Array.toList 
+                    user.Groups |> splitGroupString
             }
 
 
@@ -147,10 +155,46 @@ module Domain =
                                 PasswordHash = pwHash
                                 Salt = salt
                         }
-                        let! addResult = newUser |> updateUser
+                        do! newUser |> updateUser
                         return true
             }
 
+
+        let addGroupToUser getUser updateUser app username group =
+            async {
+                let! (user:User option) = getUser app username
+                match user with
+                | None -> return false
+                | Some user ->
+                    
+                    let newGroups = 
+                        (user.Groups |> splitGroupString)
+                        @ [ group ]
+                        |> List.distinct // remove duplicate
+
+                    let newUser =
+                        { user with Groups = newGroups |> buildGroupString }
+                    do! newUser |> updateUser
+                    return true
+            }
+
+
+
+        let removeGroupFromUser getUser updateUser app username group =
+            async {
+                let! (user:User option) = getUser app username
+                match user with
+                | None -> return false
+                | Some user ->
+                    let newGroups = 
+                        user.Groups 
+                        |> splitGroupString
+                        |> List.filter (fun i -> i<>group)
+                    let newUser =
+                        { user with Groups = newGroups |> buildGroupString }
+                    do! newUser |> updateUser
+                    return true
+            }
 
 
         let authenticate getUser storeToken app username password  =

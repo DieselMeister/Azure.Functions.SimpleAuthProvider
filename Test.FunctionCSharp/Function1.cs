@@ -32,17 +32,35 @@ namespace Test.FunctionCSharp
 
 		[FunctionName("DeleteUser")]
 		public static Task<IActionResult> DeleteUser(
-			[HttpTrigger(AuthorizationLevel.Anonymous, "post", Route="api/auth/delete")]
+			[HttpTrigger(AuthorizationLevel.Anonymous, "post", Route="api/auth/user/delete")]
 			HttpRequest req,
 			ILogger log)
 			=> Functions.deleteUser(req, log);
 
 		[FunctionName("ChangePassword")]
 		public static Task<IActionResult> ChangePassword(
-			[HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "api/auth/changepassword")]
+			[HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "api/auth/user/changepassword")]
 			HttpRequest req,
 			ILogger log)
 			=> Functions.changePassword(req, log);
+
+
+		[FunctionName("AddGroupToUser")]
+		public static Task<IActionResult> AddGroupToUser(
+			[HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "api/auth/user/addgroup")]
+			HttpRequest req,
+			ILogger log)
+			=> Functions.addGroupToUser(req, log);
+
+
+		[FunctionName("RemoveGroupFromUser")]
+		public static Task<IActionResult> RemoveGroupFromUser(
+			[HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "api/auth/user/removegroup")]
+			HttpRequest req,
+			ILogger log)
+			=> Functions.removeGroupFromUser(req, log);
+
+
 
 		[FunctionName("Validate")]
 		public static Task<IActionResult> Validate(

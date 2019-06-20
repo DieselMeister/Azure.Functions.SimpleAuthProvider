@@ -19,10 +19,12 @@ module Services =
         let addNewUser = DataAccess.addNewUser tableClient
         Domain.Authentication.createUser getUser addNewUser app username password groups
 
+
     let deleteUser app username tableClient =
         let getUser = DataAccess.getUserFromUsername tableClient
         let deleteUser = DataAccess.deleteUser tableClient
         Domain.Authentication.deleteUser getUser deleteUser app username
+
 
     let changePassword app username oldPassword newPassword tableClient =
         let getUser = DataAccess.getUserFromUsername tableClient
@@ -30,7 +32,17 @@ module Services =
         Domain.Authentication.changePassword getUser updateUser app username oldPassword newPassword
 
 
-    // api functions
+    let addGroupToUser app username group tableClient =
+        let getUser = DataAccess.getUserFromUsername tableClient
+        let updateUser = DataAccess.updateUser tableClient
+        Domain.Authentication.addGroupToUser getUser updateUser app username group
+
+
+    let removeGroupFromUser app username group tableClient =
+        let getUser = DataAccess.getUserFromUsername tableClient
+        let updateUser = DataAccess.updateUser tableClient
+        Domain.Authentication.removeGroupFromUser getUser updateUser app username group
+
 
     // auth user with name and password (get Session token)   "api/auth/token"
     let authenticate app username password tableClient =

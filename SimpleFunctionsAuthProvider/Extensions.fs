@@ -37,7 +37,7 @@ module Extensions =
                 if result.StatusCode = HttpStatusCode.OK then
                     let! content = result.Content.ReadAsStringAsync() |> Async.AwaitTask
                     let userInfo = FSharp.Json.Json.deserialize<Domain.UserInfo>(content)
-                    return Some (userInfo |> FSharp.userInfoToClaims)
+                    return Some (userInfo |> userInfoToClaims)
                 else
                     return None
             }
