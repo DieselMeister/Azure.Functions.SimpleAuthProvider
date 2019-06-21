@@ -9,7 +9,11 @@ module Domain =
 
     let standardExpirationTime = 36000
 
-    exception UserAlreadyExists of string
+    type Errors =
+        | ValidationError of string
+        | UserAlreadExisitsError
+        | InfrastructurError
+
 
     type User = {
         [<PartitionKey>] AppName: string
@@ -49,6 +53,22 @@ module Domain =
 
     let private buildGroupString (groups:string list) =
         String.Join(" ",groups)
+
+    let private removeInvalidCharacters (str:String) =
+        str
+        |> Seq.filter (fun c -> c<>'/' && c<> '\\' && c<> '#' && c<> '?')
+        |> Seq.filter (fun c -> 
+            let cByte = (c |> byte)
+            let firstCondition = cByte >= 0x00uy && cByte <= 0x1Fuy
+            let secondCondition = cByte >= 0x7Fuy && cByte <= 0x9fuy
+            not (firstCondition || secondCondition)
+        )
+        |> Seq.filter (fun c -> c<>'\r' && c<> '\n' && c<> '\t')
+        |> Seq.toArray
+        |> String
+
+    let private hasInvalidCharacters (str:String) =
+        str <> (str |> removeInvalidCharacters)
 
 
 
@@ -91,7 +111,11 @@ module Domain =
 
         let generate (expiresIn:int) app username =
             let expiresOn = DateTime.UtcNow.AddSeconds(expiresIn |> float)
-            let token = generateRandomBytes 64 |> byteToString
+            let token = 
+                generateRandomBytes 48 
+                |> byteToString
+                |> removeInvalidCharacters
+
             { 
                 UserName = username
                 Token = token
@@ -108,20 +132,30 @@ module Domain =
 
         let createUser getUser addNewUser app username password groups =
             async {
-                let! user = getUser app username
-                match user with
-                | Some _ -> return None
-                | None -> 
-                    let (pwHash,salt) = Password.createHashWithSalt password
-                    let newUser = {
-                        AppName = app
-                        UserName = username
-                        PasswordHash = pwHash
-                        Salt = salt
-                        Groups = groups
-                    }
-                    let! addResult = newUser |> addNewUser
-                    return addResult |> Option.map (fun _ -> newUser)
+                if app |> hasInvalidCharacters then
+                    return ValidationError(@"app name has invalid character. # ? / \ are not allowed!") |> Error
+                elif username |> hasInvalidCharacters then
+                    return ValidationError(@"username has invalid character. # ? / \ are not allowed!") |> Error
+                elif username = "" then
+                    return ValidationError("username is empty") |> Error
+                else
+                    let! user = getUser app username
+                    match user with
+                    | Some _ -> return Error UserAlreadExisitsError
+                    | None -> 
+                        let (pwHash,salt) = Password.createHashWithSalt password
+                        let newUser = {
+                            AppName = app
+                            UserName = username
+                            PasswordHash = pwHash
+                            Salt = salt
+                            Groups = groups
+                        }
+                        let! addResult = newUser |> addNewUser
+                        match addResult with
+                        | None -> return Error InfrastructurError
+                        | Some _ ->
+                            return Ok newUser
             }
 
 

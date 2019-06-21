@@ -133,9 +133,14 @@ module Functions =
                         tableClient
                         |> Services.createUser app username password groups
                     match newUser with
-                    | None ->
-                        return InternalServerErrorResult() :> IActionResult
-                    | Some _ ->
+                    | Error e ->
+                        log.LogError((sprintf "%A" e))
+                        match e with
+                        | ValidationError ve ->
+                            return BadRequestErrorMessageResult(ve) :> IActionResult
+                        | _ ->
+                            return InternalServerErrorResult() :> IActionResult                       
+                    | Ok _ ->
                         return OkResult() :> IActionResult
                 | _ ->
                     return BadRequestErrorMessageResult("app, username and password needed") :> IActionResult
@@ -374,9 +379,14 @@ module Functions =
                             tableClient
                             |> Services.createUser "" "emptyUser" "secret" ""
                         match newUser with
-                        | None ->
-                            return InternalServerErrorResult() :> IActionResult
-                        | Some token ->
+                        | Error e ->
+                            log.LogError((sprintf "%A" e))
+                            match e with
+                            | ValidationError ve ->
+                                return BadRequestErrorMessageResult(ve) :> IActionResult
+                            | _ ->
+                                return InternalServerErrorResult() :> IActionResult                       
+                        | Ok _ ->
                             return OkResult() :> IActionResult
         } |> Async.StartAsTask
 
