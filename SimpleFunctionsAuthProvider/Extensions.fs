@@ -3,6 +3,8 @@
 open System.Security.Claims
 open System.Collections
 open System.Net
+open Microsoft.AspNetCore.Http
+open FSharp.Json
 
 
 module Extensions =
@@ -28,6 +30,10 @@ module Extensions =
                     |> Option.map (userInfoToClaims)
             }
 
+        let getCurrentBaseUrl (req:HttpRequest) =
+            sprintf "%s://%s/" req.Scheme req.Host.Value
+
+
         /// get claim principal from token from the authentication endpoint (F# option)
         let getUserClaimFromTokenEndpoint (token:string) (userInfoEndpointAddress:string) =
             async {
@@ -36,7 +42,8 @@ module Extensions =
                 let! result = client.GetAsync(userInfoEndpointAddress) |> Async.AwaitTask
                 if result.StatusCode = HttpStatusCode.OK then
                     let! content = result.Content.ReadAsStringAsync() |> Async.AwaitTask
-                    let userInfo = FSharp.Json.Json.deserialize<Domain.UserInfo>(content)
+                    let config = JsonConfig.create(jsonFieldNaming = Json.lowerCamelCase)
+                    let userInfo = FSharp.Json.Json.deserializeEx<Domain.UserInfo> config content 
                     return Some (userInfo |> userInfoToClaims)
                 else
                     return None
