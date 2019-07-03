@@ -1,0 +1,49 @@
+group Package
+    source https://api.nuget.org/v3/index.json
+    framework: netstandard2.0
+
+    nuget FSharp.Core
+    nuget FSharp.Azure.Storage >= 3.2.0
+    nuget FSharp.Json >= 0.3.7
+    nuget Microsoft.AspNetCore.Cryptography.KeyDerivation >= 2.2.0
+    nuget Microsoft.Azure.WebJobs >= 3.0.9
+    nuget Microsoft.Azure.WebJobs.Extensions >= 3.0.2
+    nuget Microsoft.Azure.WebJobs.Extensions.Http >= 3.0.2
+    nuget Newtonsoft.Json 11.0.2
+    nuget WindowsAzure.Storage >= 9.3.3
+
+group DemoFunction
+    source https://api.nuget.org/v3/index.json
+    framework: netcoreapp2.1
+    storage: none
+
+    nuget FSharp.Core
+    nuget Microsoft.NET.Sdk.Functions >= 1.0.29
+    nuget WindowsAzure.Storage
+
+group Client
+    source https://api.nuget.org/v3/index.json
+    framework: netstandard2.0
+    storage: none
+
+    nuget Fable.Core ~> 3
+    nuget Fable.Elmish ~> 3
+    nuget Fable.Elmish.Debugger ~> 3
+    nuget Fable.Elmish.HMR ~> 4
+    nuget Fable.Elmish.React ~> 3
+    nuget Thoth.Fetch ~> 1
+    nuget Fable.React ~> 5
+    nuget Fulma ~> 2
+    nuget Fable.FontAwesome.Free ~> 2
+
+group Build
+    source https://api.nuget.org/v3/index.json
+    framework: netstandard2.0
+    storage: none
+
+    nuget FSharp.Core
+    nuget Fake.Core.ReleaseNotes
+    nuget Fake.Core.Target
+    nuget Fake.DotNet.Cli
+    nuget Fake.IO.FileSystem
+

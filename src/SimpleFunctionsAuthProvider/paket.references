@@ -1,0 +1,10 @@
+group Package
+    FSharp.Core
+    FSharp.Azure.Storage
+    FSharp.Json
+    Microsoft.AspNetCore.Cryptography.KeyDerivation
+    Microsoft.Azure.WebJobs
+    Microsoft.Azure.WebJobs.Extensions
+    Microsoft.Azure.WebJobs.Extensions.Http
+    Newtonsoft.Json
+    WindowsAzure.Storage

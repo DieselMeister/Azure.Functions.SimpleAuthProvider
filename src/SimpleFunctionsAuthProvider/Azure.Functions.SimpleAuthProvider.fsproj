@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>SimpleAuthProvider.Azure.Functions</PackageId>
+    <Version>0.0.3</Version>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <Company>Hardt IT-Solutions</Company>
+    <Authors>Daniel Hardt</Authors>
+    <PackageProjectUrl>https://github.com/DieselMeister/Azure.Functions.SimpleAuthProvider</PackageProjectUrl>
+    <PackageIconUrl>
+    </PackageIconUrl>
+    <PackageTags>simple auth azure functions</PackageTags>
+    <Copyright>
+    </Copyright>
+    <Description>a simple auth provider (non standard) to deploy on azure functions</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyVersionAttribute>0.0.1</AssemblyVersionAttribute>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Domain.fs" />
+    <Compile Include="DataAccess.fs" />
+    <Compile Include="Services.fs" />
+    <Compile Include="Function.fs" />
+    <Compile Include="Extensions.fs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="paket.references" />
+  </ItemGroup>
+  <Import Project="..\..\.paket\Paket.Restore.targets" />
+</Project>

@@ -1,0 +1,4 @@
+group DemoFunction
+    FSharp.Core
+    Microsoft.NET.Sdk.Functions
+    WindowsAzure.Storage

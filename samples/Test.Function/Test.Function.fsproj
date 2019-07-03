@@ -1,11 +1,10 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>    
-    <TargetFramework>netcoreapp2.1</TargetFramework>    
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
     <AzureFunctionsVersion>v2</AzureFunctionsVersion>
   </PropertyGroup>
-
   <ItemGroup>
+    <None Include="paket.references" />
     <None Include="local.settings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -16,14 +15,8 @@
     <None Include="Properties\PublishProfiles\simpleauthtestfsharp - Web Deploy.pubxml.user" />
     <Compile Include="Functions.fs" />
   </ItemGroup>
-
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.29" />
-    <PackageReference Include="WindowsAzure.Storage" Version="9.3.3" />
+    <ProjectReference Include="..\..\src\SimpleFunctionsAuthProvider\Azure.Functions.SimpleAuthProvider.fsproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\SimpleFunctionsAuthProvider\Azure.Functions.SimpleAuthProvider.fsproj" />
-  </ItemGroup>
-
+  <Import Project="..\..\.paket\Paket.Restore.targets" />
 </Project>
